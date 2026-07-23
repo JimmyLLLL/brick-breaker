@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://jimmyllll.github.io/brick-breaker/sitemap.xml

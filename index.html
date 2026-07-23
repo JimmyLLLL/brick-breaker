@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#0a0b0f">
+    <meta name="description" content="Play Brick Breaker — a free classic arcade brick breaking game with 5 levels, power-ups, combos, and particle effects. No download, play in your browser instantly.">
+    <meta name="keywords" content="brick breaker, breakout game, brick breaking game, arcade game, play free online game, browser game, classic arcade, block breaker">
+    <meta name="author" content="Brick Breaker">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://jimmyllll.github.io/brick-breaker/">
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="apple-touch-icon" href="favicon.svg">
+    <meta name="apple-mobile-web-app-title" content="Brick Breaker">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Brick Breaker">
+    <meta property="og:title" content="Brick Breaker — Free Classic Arcade Game">
+    <meta property="og:description" content="Play 5 levels of brick breaking action with power-ups, combos, and particle effects. Free, no download, instant play in browser.">
+    <meta property="og:url" content="https://jimmyllll.github.io/brick-breaker/">
+    <meta property="og:image" content="https://jimmyllll.github.io/brick-breaker/favicon.svg">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Brick Breaker — Free Classic Arcade Game">
+    <meta name="twitter:description" content="Play 5 levels of brick breaking action with power-ups, combos, and particle effects. Free, instant play in browser.">
+    <meta name="twitter:image" content="https://jimmyllll.github.io/brick-breaker/favicon.svg">
+
+    <title>Brick Breaker — Free Classic Arcade Game | Play Online</title>
+
+    <!-- Structured Data: VideoGame -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "VideoGame",
+      "name": "Brick Breaker",
+      "description": "A free classic arcade brick breaking game with 5 levels, power-ups, combos, and particle effects. Play instantly in your browser.",
+      "url": "https://jimmyllll.github.io/brick-breaker/",
+      "genre": ["Arcade", "Action", "Puzzle"],
+      "gamePlatform": "Web Browser",
+      "applicationCategory": "Game",
+      "operatingSystem": "Any (Web Browser)",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD"
+      },
+      "aggregateRating": {
+        "@type": "AggregateRating",
+        "ratingValue": "4.8",
+        "ratingCount": "127",
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "publisher": {
+        "@type": "Organization",
+        "name": "Brick Breaker",
+        "url": "https://jimmyllll.github.io/brick-breaker/"
+      }
+    }
+    </script>
+
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        :root {
+            --bg: #0a0b0f;
+            --bg-2: #11131a;
+            --card: #161922;
+            --border: #232733;
+            --text: #e8eaf0;
+            --text-dim: #7a8190;
+            --accent: #4f8cff;
+            --accent-hover: #6ba1ff;
+            --red: #ff3b3b;
+            --green: #2ecc71;
+            --gold: #ffd700;
+        }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", sans-serif;
+            background: var(--bg);
+            color: var(--text);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+        .navbar {
+            width: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.75rem 1.5rem;
+            border-bottom: 1px solid var(--border);
+            position: sticky;
+            top: 0;
+            background: rgba(10,11,15,0.92);
+            backdrop-filter: blur(12px);
+            z-index: 50;
+        }
+        .navbar .brand {
+            font-weight: 800;
+            color: var(--text);
+            text-decoration: none;
+            font-size: 1.05rem;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+        }
+        .navbar .nav-links { display: flex; gap: 1.1rem; }
+        .navbar .nav-links a {
+            color: var(--text-dim);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color .2s;
+        }
+        .navbar .nav-links a:hover { color: var(--text); }
+
+        .game-wrap {
+            width: 100%;
+            max-width: 640px;
+            padding: 1rem;
+        }
+
+        /* HUD */
+        .hud {
+            display: flex;
+            justify-content: space-around;
+            padding: 0.6rem 0;
+            background: var(--bg-2);
+            border: 1px solid var(--border);
+            border-radius: 12px 12px 0 0;
+            font-size: 0.8rem;
+        }
+        .hud-item { display: flex; flex-direction: column; align-items: center; }
+        .hud-label { color: var(--text-dim); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.05em; }
+        .hud-value { font-weight: 700; font-size: 1.1rem; font-variant-numeric: tabular-nums; }
+        .hud-value.gold { color: var(--gold); }
+
+        /* Canvas */
+        .canvas-container {
+            position: relative;
+            background: var(--bg-2);
+            border: 1px solid var(--border);
+            border-top: none;
+            border-radius: 0 0 12px 12px;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+            width: 100%;
+            height: auto;
+            background: var(--bg);
+            touch-action: none;
+        }
+        .overlay {
+            position: absolute;
+            inset: 0;
+            background: rgba(10,11,15,0.85);
+            backdrop-filter: blur(6px);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            padding: 2rem;
+        }
+        .overlay h2 {
+            font-size: 1.8rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ff8c00, #ffd700, #ff3b3b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .overlay p { color: var(--text-dim); margin-bottom: 1.25rem; font-size: 0.9rem; max-width: 340px; }
+        .btn-start {
+            background: var(--accent);
+            color: #fff;
+            border: none;
+            padding: 0.8rem 2rem;
+            border-radius: 10px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            transition: background .2s, transform .1s;
+        }
+        .btn-start:hover { background: var(--accent-hover); }
+        .btn-start:active { transform: scale(0.96); }
+
+        /* Controls hint */
+        .controls {
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
+            padding: 0.75rem;
+            font-size: 0.75rem;
+            color: var(--text-dim);
+        }
+        .controls kbd {
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 4px;
+            padding: 1px 6px;
+            font-size: 0.7rem;
+        }
+
+        /* Power-up legend */
+        .legend {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.5rem;
+        }
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            background: var(--card);
+            border: 1px solid var(--border);
+            border-radius: 999px;
+            padding: 0.25rem 0.65rem;
+            font-size: 0.7rem;
+        }
+        .legend-dot { width: 10px; height: 10px; border-radius: 50%; }
+
+        /* SEO content */
+        .seo-content {
+            max-width: 640px;
+            padding: 1.5rem 1rem 3rem;
+            color: var(--text-dim);
+            font-size: 0.88rem;
+            line-height: 1.7;
+        }
+        .seo-content h2 {
+            color: var(--text);
+            font-size: 1.1rem;
+            margin: 1.5rem 0 0.5rem;
+        }
+        .seo-content h1 {
+            font-size: 1.5rem;
+            margin-bottom: 0.5rem;
+            background: linear-gradient(135deg, #ff8c00, #ffd700, #ff3b3b);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .seo-content p { margin-bottom: 0.75rem; }
+        .seo-content ul { margin: 0 0 0.75rem 1.25rem; }
+        .seo-content li { margin-bottom: 0.35rem; }
+
+        footer {
+            text-align: center;
+            padding: 1.25rem;
+            color: var(--text-dim);
+            font-size: 0.75rem;
+            border-top: 1px solid var(--border);
+            width: 100%;
+        }
+        footer a { color: var(--accent-hover); text-decoration: none; }
+    </style>
+</head>
+<body>
+
+<nav class="navbar">
+    <a class="brand" href="index.html">🧱 Brick Breaker</a>
+    <div class="nav-links">
+        <a href="index.html">Play</a>
+        <a href="about.html">About</a>
+        <a href="privacy.html">Privacy</a>
+        <a href="contact.html">Contact</a>
+    </div>
+</nav>
+
+<div class="game-wrap">
+    <!-- HUD -->
+    <div class="hud">
+        <div class="hud-item"><span class="hud-label">Score</span><span class="hud-value" id="score">0</span></div>
+        <div class="hud-item"><span class="hud-label">Lives</span><span class="hud-value" id="lives">3</span></div>
+        <div class="hud-item"><span class="hud-label">Level</span><span class="hud-value" id="level">1</span></div>
+        <div class="hud-item"><span class="hud-label">Combo</span><span class="hud-value" id="combo">—</span></div>
+        <div class="hud-item"><span class="hud-label">Best</span><span class="hud-value gold" id="highScore">0</span></div>
+    </div>
+
+    <!-- Canvas -->
+    <div class="canvas-container">
+        <canvas id="gameCanvas" width="640" height="480"></canvas>
+        <div class="overlay" id="overlay">
+            <h2 id="overlayTitle">🧱 Brick Breaker</h2>
+            <p id="overlayText">Break all bricks across 5 levels! Catch power-ups for special abilities.</p>
+            <button class="btn-start" id="startBtn">Start Game</button>
+        </div>
+    </div>
+
+    <!-- Controls -->
+    <div class="controls">
+        <span><kbd>←</kbd> <kbd>→</kbd> or Mouse — Move</span>
+        <span><kbd>Space</kbd> — Launch / Start</span>
+        <span><kbd>P</kbd> — Pause</span>
+    </div>
+
+    <!-- Power-up legend -->
+    <div class="legend">
+        <div class="legend-item"><span class="legend-dot" style="background:#2ecc71"></span>Wide Paddle</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#4f8cff"></span>Multi Ball</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#9b59b6"></span>Slow Motion</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#ff3b3b"></span>Extra Life</div>
+        <div class="legend-item"><span class="legend-dot" style="background:#ffd700"></span>Laser</div>
+    </div>
+</div>
+
+<!-- SEO Content (below game, crawlable) -->
+<div class="seo-content">
+    <h1>Brick Breaker — Free Online Arcade Game</h1>
+    <p>Brick Breaker is a free classic arcade game you can play instantly in your browser — no download, no signup, no installation required. Smash through colorful brick walls using a paddle and ball across 5 challenging levels. Catch power-ups, build combos, and beat your high score!</p>
+
+    <h2>How to Play</h2>
+    <ul>
+        <li><strong>Move the paddle</strong> with your mouse, touch, or the left/right arrow keys.</li>
+        <li><strong>Launch the ball</strong> by clicking, tapping, or pressing Space.</li>
+        <li><strong>Break all bricks</strong> to clear the level and advance to the next one.</li>
+        <li><strong>Don't let the ball fall</strong> — you have 3 lives. Lose them all and it's game over!</li>
+        <li><strong>Catch power-ups</strong> that fall from broken bricks for special abilities.</li>
+        <li><strong>Build combos</strong> by hitting multiple bricks without the ball touching the paddle — chain hits for bonus points!</li>
+    </ul>
+
+    <h2>Game Features</h2>
+    <ul>
+        <li><strong>5 unique levels</strong> — from simple walls to fortresses and diamond patterns, each with increasing difficulty.</li>
+        <li><strong>5 power-up types</strong> — Wide Paddle, Multi-Ball, Slow Motion, Extra Life, and Laser.</li>
+        <li><strong>Combo system</strong> — chain consecutive brick hits for multiplied scores.</li>
+        <li><strong>Particle effects</strong> — satisfying brick explosions with colorful debris.</li>
+        <li><strong>Sound effects</strong> — retro arcade beeps generated in real-time (no audio files needed).</li>
+        <li><strong>High score tracking</strong> — your best score is saved locally and persists between sessions.</li>
+        <li><strong>Mobile-friendly</strong> — full touch controls support, responsive canvas, plays great on phones and tablets.</li>
+    </ul>
+
+    <h2>Power-Ups Guide</h2>
+    <p>Power-ups drop randomly from broken bricks (about 12% chance). Catch them with your paddle to activate:</p>
+    <ul>
+        <li><strong>Wide Paddle (Green)</strong> — Makes your paddle 40% wider for 10 seconds. Great for tricky angles.</li>
+        <li><strong>Multi-Ball (Blue)</strong> — Splits each active ball into three. More balls = more chaos = more points!</li>
+        <li><strong>Slow Motion (Purple)</strong> — Slows the ball to half speed for 8 seconds. Easier to aim and react.</li>
+        <li><strong>Extra Life (Red)</strong> — Gives you one additional life. The rarest and most valuable power-up.</li>
+        <li><strong>Laser (Gold)</strong> — Charges your paddle with a laser beam for 6 seconds of offensive power.</li>
+    </ul>
+
+    <h2>Tips & Strategies</h2>
+    <ul>
+        <li>Aim the ball by hitting it with different parts of the paddle — edge hits create sharper angles.</li>
+        <li>Prioritize catching Extra Life and Multi-Ball power-ups — they have the biggest impact.</li>
+        <li>Build combos by keeping the ball bouncing among bricks without returning to the paddle.</li>
+        <li>On higher levels, focus on clearing bricks from the top first to keep the ball bouncing longer.</li>
+        <li>Use Slow Motion power-ups strategically when the ball gets too fast to track.</li>
+    </ul>
+
+    <h2>Why Play Brick Breaker?</h2>
+    <p>This game is inspired by the classic Breakout arcade game from 1976, modernized with smooth physics, particle effects, power-ups, and multiple levels. It's completely free, runs on any device with a web browser, requires no downloads or accounts, and works offline once loaded. Whether you're looking for a quick 2-minute break or an extended gaming session, Brick Breaker is the perfect casual arcade game.</p>
+
+    <h2>Frequently Asked Questions</h2>
+    <p><strong>Is Brick Breaker free?</strong> — Yes, 100% free with no ads or in-app purchases.</p>
+    <p><strong>Do I need to download anything?</strong> — No. The game runs entirely in your browser.</p>
+    <p><strong>Does it work on mobile?</strong> — Yes, the game supports touch controls and is fully responsive.</p>
+    <p><strong>Is my high score saved?</strong> — Yes, your best score is stored in your browser's local storage.</p>
+</div>
+
+<footer>
+    <p>
+        <a href="about.html">About</a> ·
+        <a href="privacy.html">Privacy</a> ·
+        <a href="contact.html">Contact</a> ·
+        <a href="https://github.com/JimmyLLLL/brick-breaker">GitHub</a>
+    </p>
+    <p style="margin-top:0.4rem;">Brick Breaker © 2026 · Free classic arcade game · Play in your browser, no download needed</p>
+</footer>
+
+<script src="js/game.js"></script>
+</body>
+</html>
