@@ -30,7 +30,11 @@
     <meta name="twitter:description" content="Play 5 levels of brick breaking action with power-ups, combos, and particle effects. Free, instant play in browser.">
     <meta name="twitter:image" content="https://jimmyllll.github.io/brick-breaker/favicon.svg">
 
-    <title>Brick Breaker — Free Classic Arcade Game | Play Online</title>
+    <!-- Preconnect for performance -->
+    <link rel="preconnect" href="https://pagead2.googlesyndication.com">
+    <link rel="preconnect" href="https://api.counterapi.dev">
+
+    <title>Brick Breaker — Free Classic Arcade Game | Play Online No Download</title>
 
     <!-- Structured Data: VideoGame -->
     <script type="application/ld+json">
@@ -38,12 +42,15 @@
       "@context": "https://schema.org",
       "@type": "VideoGame",
       "name": "Brick Breaker",
-      "description": "A free classic arcade brick breaking game with 5 levels, power-ups, combos, and particle effects. Play instantly in your browser.",
+      "alternateName": "Breakout Game",
+      "description": "A free classic arcade brick breaking game with 5 levels, power-ups, combos, and particle effects. Play instantly in your browser — no download required.",
       "url": "https://jimmyllll.github.io/brick-breaker/",
-      "genre": ["Arcade", "Action", "Puzzle"],
+      "genre": ["Arcade", "Action", "Puzzle", "Casual"],
       "gamePlatform": "Web Browser",
       "applicationCategory": "Game",
       "operatingSystem": "Any (Web Browser)",
+      "playMode": "SinglePlayer",
+      "inLanguage": "en",
       "offers": {
         "@type": "Offer",
         "price": "0",
@@ -61,6 +68,51 @@
         "name": "Brick Breaker",
         "url": "https://jimmyllll.github.io/brick-breaker/"
       }
+    }
+    </script>
+    <!-- Structured Data: FAQPage -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      "mainEntity": [
+        {
+          "@type": "Question",
+          "name": "Is Brick Breaker free to play?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, Brick Breaker is 100% free with no ads or in-app purchases. Play directly in your browser." }
+        },
+        {
+          "@type": "Question",
+          "name": "Do I need to download anything to play?",
+          "acceptedAnswer": { "@type": "Answer", "text": "No. The game runs entirely in your browser with no downloads or installations required." }
+        },
+        {
+          "@type": "Question",
+          "name": "Does Brick Breaker work on mobile phones?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, the game supports touch controls and is fully responsive, working great on phones and tablets." }
+        },
+        {
+          "@type": "Question",
+          "name": "Is my high score saved?",
+          "acceptedAnswer": { "@type": "Answer", "text": "Yes, your best score is stored in your browser's local storage and persists between sessions." }
+        },
+        {
+          "@type": "Question",
+          "name": "How many levels does Brick Breaker have?",
+          "acceptedAnswer": { "@type": "Answer", "text": "The game has 5 unique levels with distinct layouts: rows, pyramid, checkerboard, fortress, and diamond patterns." }
+        }
+      ]
+    }
+    </script>
+    <!-- Structured Data: BreadcrumbList -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "BreadcrumbList",
+      "itemListElement": [
+        { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://jimmyllll.github.io/brick-breaker/" },
+        { "@type": "ListItem", "position": 2, "name": "Play", "item": "https://jimmyllll.github.io/brick-breaker/" }
+      ]
     }
     </script>
 
@@ -262,6 +314,15 @@
             width: 100%;
         }
         footer a { color: var(--accent-hover); text-decoration: none; }
+
+        .stats {
+            text-align: center;
+            margin: 0 0 1rem;
+            font-size: 0.78rem;
+            color: var(--text-dim);
+        }
+        .stats strong { color: var(--accent-hover); font-variant-numeric: tabular-nums; }
+        .stat-divider { margin: 0 0.6rem; opacity: 0.4; }
     </style>
 </head>
 <body>
@@ -368,6 +429,14 @@
     <p><strong>Is my high score saved?</strong> — Yes, your best score is stored in your browser's local storage.</p>
 </div>
 
+<div class="seo-content">
+    <div class="stats">
+        👁️ Views <strong id="pv">-</strong>
+        <span class="stat-divider">|</span>
+        👤 Players <strong id="uv">-</strong>
+    </div>
+</div>
+
 <footer>
     <p>
         <a href="about.html">About</a> ·
@@ -379,5 +448,27 @@
 </footer>
 
 <script src="js/game.js"></script>
+<script>
+// ===== View counter (CountAPI) =====
+const NS = "jimmyllll-brickbreaker";
+const pvEl = document.getElementById("pv");
+const uvEl = document.getElementById("uv");
+fetch(`https://api.counterapi.dev/v1/${NS}/pv/up`)
+    .then(r => r.json())
+    .then(d => { pvEl.textContent = (d.count || 0).toLocaleString(); })
+    .catch(() => { pvEl.textContent = "N/A"; });
+const uvKey = "brickbreaker_uv_counted";
+if (!localStorage.getItem(uvKey)) {
+    fetch(`https://api.counterapi.dev/v1/${NS}/uv/up`)
+        .then(r => r.json())
+        .then(d => { uvEl.textContent = (d.count || 0).toLocaleString(); localStorage.setItem(uvKey, "1"); })
+        .catch(() => { uvEl.textContent = "N/A"; });
+} else {
+    fetch(`https://api.counterapi.dev/v1/${NS}/uv`)
+        .then(r => r.json())
+        .then(d => { uvEl.textContent = (d.count || 0).toLocaleString(); })
+        .catch(() => { uvEl.textContent = "N/A"; });
+}
+</script>
 </body>
 </html>
