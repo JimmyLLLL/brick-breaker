@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://jimmyllll.github.io/brick-breaker/sitemap.xml
+Sitemap: https://jimmywithfiona.com/brick-breaker/sitemap.xml
