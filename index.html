@@ -369,8 +369,26 @@
     .scroll-top.visible { display: flex; }
 
     
-    /* UX: larger touch targets on all devices */
-    .navbar .nav-links a, .topbar .nav-links a, .nav-links a {
+    /* UX: touch targets + mobile fixes */
+    body { overflow-x: hidden !important; }
+    .nav-links a, .navbar .nav-links a, .topbar .nav-links a {
+        display: inline-flex; align-items: center;
+        min-height: 36px; padding: 0.4rem 0.25rem;
+    }
+    footer a, footer p a {
+        display: inline-block; min-height: 36px; line-height: 36px;
+        padding: 0 0.15rem;
+    }
+    @media (max-width: 768px) {
+        .nav-links a, .navbar .nav-links a, .topbar .nav-links a, footer a {
+            min-height: 44px !important; line-height: 44px;
+            padding: 0 0.3rem;
+        }
+        .nav-links, .navbar .nav-links, .topbar .nav-links { flex-wrap: wrap; gap: 0.2rem; }
+        input, select, textarea { font-size: 16px !important; }
+        .tab, .preset-btn, .unit-toggle button, .btn { min-height: 44px; }
+        .tool-link, .outlet, .story, .quiz-option { min-height: 44px; }
+    }    .navbar .nav-links a, .topbar .nav-links a, .nav-links a {
         padding: 0.5rem 0.25rem;
         min-height: 36px;
         display: inline-flex;
