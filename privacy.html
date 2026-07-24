@@ -94,6 +94,28 @@
     }
     .scroll-top.visible { display: flex; }
 
+    
+    /* UX: larger touch targets on all devices */
+    .navbar .nav-links a, .topbar .nav-links a, .nav-links a {
+        padding: 0.5rem 0.25rem;
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
+    }
+    body { overflow-x: hidden; }
+    @media (max-width: 768px) {
+        .navbar .nav-links a, .topbar .nav-links a, .nav-links a {
+            min-height: 44px;
+            padding: 0.5rem 0.4rem;
+        }
+        .navbar .nav-links, .topbar .nav-links, .nav-links {
+            flex-wrap: wrap;
+            gap: 0.2rem;
+        }
+        input, select, textarea { font-size: 16px !important; }
+        .tab, .preset-btn, .unit-toggle button, .btn { min-height: 44px; }
+    }
+
     </style>
 </head>
 <body>

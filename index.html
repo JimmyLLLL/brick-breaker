@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="theme-color" content="#0a0b0f">
-    <meta name="description" content="Play Brick Breaker — a free classic arcade brick breaking game with 5 levels, power-ups, combos, and particle effects. No download, play in your browser instantly.">
+    <meta name="description" content="Play Brick Breaker — free arcade game with 5 levels, power-ups, and combos. No download, instant play.">
     <meta name="author" content="Brick Breaker">
     <meta name="robots" content="index, follow">
     <link rel="canonical" href="https://jimmyllll.github.io/brick-breaker/">
@@ -14,12 +14,12 @@
     <meta property="og:site_name" content="Brick Breaker">
     <meta property="og:locale" content="en_US">
     <meta property="og:title" content="Brick Breaker — Free Arcade Game | Play Online">
-    <meta property="og:description" content="Play Brick Breaker — a free classic arcade brick breaking game with 5 levels, power-ups, combos, and particle effects. No download, play in your browser instantly.">
+    <meta property="og:description" content="Play Brick Breaker — free arcade game with 5 levels, power-ups, and combos. No download, instant play.">
     <meta property="og:url" content="https://jimmyllll.github.io/brick-breaker/">
     <meta property="og:image" content="https://jimmyllll.github.io/brick-breaker/favicon.svg">
     <meta name="twitter:card" content="summary">
     <meta name="twitter:title" content="Brick Breaker — Free Arcade Game | Play Online">
-    <meta name="twitter:description" content="Play Brick Breaker — a free classic arcade brick breaking game with 5 levels, power-ups, combos, and particle effects. No download, play in your browser instantly.">
+    <meta name="twitter:description" content="Play Brick Breaker — free arcade game with 5 levels, power-ups, and combos. No download, instant play.">
     <meta name="twitter:image" content="https://jimmyllll.github.io/brick-breaker/favicon.svg">
 
     <!-- Favicon -->
@@ -367,6 +367,28 @@
         transition: opacity 0.3s;
     }
     .scroll-top.visible { display: flex; }
+
+    
+    /* UX: larger touch targets on all devices */
+    .navbar .nav-links a, .topbar .nav-links a, .nav-links a {
+        padding: 0.5rem 0.25rem;
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
+    }
+    body { overflow-x: hidden; }
+    @media (max-width: 768px) {
+        .navbar .nav-links a, .topbar .nav-links a, .nav-links a {
+            min-height: 44px;
+            padding: 0.5rem 0.4rem;
+        }
+        .navbar .nav-links, .topbar .nav-links, .nav-links {
+            flex-wrap: wrap;
+            gap: 0.2rem;
+        }
+        input, select, textarea { font-size: 16px !important; }
+        .tab, .preset-btn, .unit-toggle button, .btn { min-height: 44px; }
+    }
 
     </style>
 </head>
