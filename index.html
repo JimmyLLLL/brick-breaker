@@ -13,12 +13,12 @@
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Brick Breaker">
     <meta property="og:locale" content="en_US">
-    <meta property="og:title" content="Brick Breaker — Free Classic Arcade Game | Play Online No Download">
+    <meta property="og:title" content="Brick Breaker — Free Arcade Game | Play Online">
     <meta property="og:description" content="Play Brick Breaker — a free classic arcade brick breaking game with 5 levels, power-ups, combos, and particle effects. No download, play in your browser instantly.">
     <meta property="og:url" content="https://jimmyllll.github.io/brick-breaker/">
     <meta property="og:image" content="https://jimmyllll.github.io/brick-breaker/favicon.svg">
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="Brick Breaker — Free Classic Arcade Game | Play Online No Download">
+    <meta name="twitter:title" content="Brick Breaker — Free Arcade Game | Play Online">
     <meta name="twitter:description" content="Play Brick Breaker — a free classic arcade brick breaking game with 5 levels, power-ups, combos, and particle effects. No download, play in your browser instantly.">
     <meta name="twitter:image" content="https://jimmyllll.github.io/brick-breaker/favicon.svg">
 
@@ -35,7 +35,7 @@
     <link rel="preconnect" href="https://pagead2.googlesyndication.com">
     <link rel="preconnect" href="https://api.counterapi.dev">
 
-    <title>Brick Breaker — Free Classic Arcade Game | Play Online No Download</title>
+    <title>Brick Breaker — Free Arcade Game | Play Online</title>
 
     <!-- Structured Data: VideoGame -->
     <script type="application/ld+json">
@@ -324,6 +324,50 @@
         }
         .stats strong { color: var(--accent-hover); font-variant-numeric: tabular-nums; }
         .stat-divider { margin: 0 0.6rem; opacity: 0.4; }
+    
+
+    /* UX fixes: touch targets, font sizes */
+    @media (max-width: 768px) {
+        .navbar .nav-links a {
+            padding: 0.5rem 0.3rem;
+            min-height: 44px;
+            display: flex;
+            align-items: center;
+        }
+        .navbar { padding: 0.5rem 0.75rem; }
+        .navbar .brand { font-size: 0.95rem; }
+        .navbar .nav-links { gap: 0.3rem; }
+        input[type="text"], input[type="number"], select, textarea {
+            font-size: 16px !important;
+        }
+        .tab { min-height: 44px; display: flex; align-items: center; }
+        .preset-btn { min-height: 44px; }
+        .unit-toggle button { min-height: 44px; padding: 0.5rem 0.75rem; }
+        .btn { min-height: 44px; }
+        .legend-item, .outlet { min-height: 44px; }
+    }
+    /* Scroll to top button */
+    .scroll-top {
+        position: fixed;
+        bottom: 1.5rem;
+        right: 1.5rem;
+        width: 44px;
+        height: 44px;
+        border-radius: 50%;
+        background: var(--accent, #4f8cff);
+        color: #fff;
+        border: none;
+        cursor: pointer;
+        font-size: 1.2rem;
+        display: none;
+        z-index: 100;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 12px rgba(0,0,0,0.3);
+        transition: opacity 0.3s;
+    }
+    .scroll-top.visible { display: flex; }
+
     </style>
 </head>
 <body>
