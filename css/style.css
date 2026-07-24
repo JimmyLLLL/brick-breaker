@@ -117,3 +117,12 @@ footer a, footer p a {
     footer a { min-height: 44px; line-height: 44px; }
     .navbar .nav-links { flex-wrap: wrap; }
 }
+
+
+/* === UX Final: all links touch-friendly on mobile === */
+@media (max-width: 768px) {
+    a { min-height: 44px; display: inline-flex; align-items: center; }
+    .tool-card a, .seo-section a, .result a { display: inline-block; min-height: 44px; line-height: 44px; }
+    .navbar .brand { min-height: 44px; }
+    button { min-height: 44px; }
+}
