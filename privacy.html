@@ -147,16 +147,18 @@
 </nav>
 <main>
 <!-- AdSense Ad Unit -->
+<div class="ad-container" style="text-align:center;min-height:0;max-height:120px;overflow:hidden;transition:max-height .3s;margin:0 0 1rem;">
 <ins class="adsbygoogle"
-     style="display:block;max-height:280px;overflow:hidden;min-height:0"
+     style="display:block"
      data-ad-client="ca-pub-1840337371416691"
      data-ad-slot="5549785669"
      data-ad-format="auto"
      data-full-width-responsive="true"></ins>
 <script>
      (adsbygoogle = window.adsbygoogle || []).push({});
-     window.addEventListener('load',function(){setTimeout(function(){document.querySelectorAll('ins.adsbygoogle[data-ad-slot="5549785669"]').forEach(function(el){try{var ifr=el.querySelector('iframe');if(ifr){var ib=ifr.contentWindow.document.body;if(!ib||ib.scrollHeight<10){el.style.display='none';}}}catch(e){var r=el.getBoundingClientRect();if(r.height<10){el.style.display='none';}}});},6000);});
+     setTimeout(function(){var c=document.querySelector('.ad-container');if(!c)return;var ins=c.querySelector('ins.adsbygoogle');var ifr=ins&&ins.querySelector('iframe');if(!ifr){c.style.display='none';return;}ifr.addEventListener('load',function(){try{var b=ifr.contentWindow.document.body;if(!b||b.scrollHeight<15){c.style.maxHeight='0';c.style.margin='0';}}catch(e){}});setTimeout(function(){try{var b=ifr.contentWindow.document.body;if(!b||b.scrollHeight<15){c.style.maxHeight='0';c.style.margin='0';}}catch(e){var r=ifr.getBoundingClientRect();if(r.height<15){c.style.maxHeight='0';c.style.margin='0';}}},8000);},3000);
 </script>
+</div>
 
 
     <h1>Privacy Policy</h1>
