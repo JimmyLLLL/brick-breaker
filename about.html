@@ -183,5 +183,35 @@
 
     <div style="margin-top:0.6rem;font-size:0.72rem;opacity:0.6;">More: <a href="https://jimmywithfiona.com/">JimmyWithFiona — Home</a> · <a href="https://jimmywithfiona.com/mortgage-calculator/">Mortgage Calculator</a> · <a href="https://jimmywithfiona.com/fun-tests/">FunTests — Quizzes</a> · <a href="https://jimmywithfiona.com/wheel-spinner/">Wheel Spinner</a> · <a href="https://jimmywithfiona.com/game-2048/">2048 Game</a> · <a href="https://jimmywithfiona.com/bmi-calculator/">BMI Calculator</a></div>
 </footer>
+<!-- I18N-FULL -->
+<script>
+(function(){
+var lang=(navigator.language||navigator.userLanguage||'en').toLowerCase();
+if(!lang.startsWith('zh'))return;
+var ZH={"🧱 Brick Breaker":"🧱 打砖块","Play":"开始游戏","About":"关于","Privacy":"隐私","Contact":"联系","🏠 Home":"🏠 首页","About Brick Breaker":"关于打砖块","Brick Breaker is a free, browser-based arcade game inspired by the classic Breakout (1976). Our goal is to deliver a polished, satisfying brick-breaking experience that loads instantly and plays smoothly on any device — no downloads, no sign-ups, no waiting.":"打砖块是一款免费的网页街机游戏，灵感来自经典游戏 Breakout（1976）。我们的目标是提供精致、令人满足的打砖块体验，即时加载，在任何设备上流畅运行 — 无需下载，无需注册，无需等待。","What makes it special":"特色亮点","5 hand-crafted levels":"5 个精心设计的关卡","with distinct layouts: rows, pyramids, checkerboards, fortresses, and diamonds.":"各具独特布局：横排、金字塔、棋盘、堡垒和菱形。","5 power-ups":"5 种道具","that drop from bricks — wide paddle, multi-ball, slow motion, extra life, and laser.":"从砖块中掉落 — 加宽挡板、多球、慢动作、额外生命和激光。","Combo system":"连击系统","rewarding skilled play with multiplied scores.":"奖励技巧性操作，得分倍增。","Particle effects & sound":"粒子特效与音效","— every brick break feels satisfying with colorful debris and retro arcade beeps.":"— 每次打碎砖块都伴有缤纷碎片和复古街机音效，令人满足。","Local high score":"本地最高分","saved in your browser — no account needed.":"保存在您的浏览器中 — 无需账号。","Fully responsive":"完全自适应","— mouse, keyboard, and touch controls all supported.":"— 支持鼠标、键盘和触摸控制。","How it's built":"技术实现","Brick Breaker is built with vanilla HTML5 Canvas and JavaScript — no game engine, no frameworks, no external dependencies. The entire game is under 15KB of code, meaning it loads almost instantly even on slow connections. Sound effects are generated in real-time using the Web Audio API, so there are zero audio files to download.":"打砖块使用原生 HTML5 Canvas 和 JavaScript 构建 — 无游戏引擎，无框架，无外部依赖。整个游戏代码不超过 15KB，即使在慢速网络下也能几乎即时加载。音效使用 Web Audio API 实时生成，无需下载任何音频文件。","Play now":"立即游玩","Ready to break some bricks? Jump straight into the game — it's free!":"准备好打砖块了吗？直接开始游戏吧 — 完全免费！","▶ Play Brick Breaker":"▶ 游玩打砖块","© 2026 Brick Breaker ·":"© 2026 打砖块 ·","More:":"更多：","JimmyWithFiona — Home":"JimmyWithFiona — 首页","Mortgage Calculator":"房贷计算器","FunTests — Quizzes":"FunTests — 测验","Wheel Spinner":"转盘","2048 Game":"2048 游戏","BMI Calculator":"BMI 计算器"};
+function walk(node){
+if(node.nodeType===3){
+var t=node.textContent,k=t.trim();
+if(k&&ZH[k]){node.textContent=t.replace(k,ZH[k])}
+}else if(node.nodeType===1&&node.tagName!=='SCRIPT'&&node.tagName!=='STYLE'&&node.tagName!=='NOSCRIPT'){
+if(node.childNodes.length>1){
+var full=node.textContent.trim();
+if(ZH[full]){node.textContent=ZH[full];return}
+}
+for(var i=0;i<node.childNodes.length;i++){walk(node.childNodes[i])}
+}
+}
+walk(document.body);
+document.documentElement.lang='zh-CN';
+var mo=new MutationObserver(function(muts){
+muts.forEach(function(m){
+if(m.type==='childList'){m.addedNodes.forEach(function(n){walk(n)})}
+else if(m.type==='characterData'){walk(m.target)}
+});
+});
+mo.observe(document.body,{childList:true,subtree:true,characterData:true});
+})();
+</script>
+<!-- /I18N-FULL -->
 </body>
 </html>

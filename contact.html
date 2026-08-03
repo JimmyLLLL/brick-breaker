@@ -188,5 +188,35 @@
 
     <div style="margin-top:0.6rem;font-size:0.72rem;opacity:0.6;">More: <a href="https://jimmywithfiona.com/">JimmyWithFiona — Home</a> · <a href="https://jimmywithfiona.com/mortgage-calculator/">Mortgage Calculator</a> · <a href="https://jimmywithfiona.com/fun-tests/">FunTests — Quizzes</a> · <a href="https://jimmywithfiona.com/wheel-spinner/">Wheel Spinner</a> · <a href="https://jimmywithfiona.com/game-2048/">2048 Game</a> · <a href="https://jimmywithfiona.com/bmi-calculator/">BMI Calculator</a></div>
 </footer>
+<!-- I18N-FULL -->
+<script>
+(function(){
+var lang=(navigator.language||navigator.userLanguage||'en').toLowerCase();
+if(!lang.startsWith('zh'))return;
+var ZH={"🧱 Brick Breaker":"🧱 打砖块","Play":"开始游戏","About":"关于","Privacy":"隐私","Contact":"联系","🏠 Home":"🏠 首页","Contact Us":"联系我们","Found a bug, have a feature idea, or want to share your high score? We'd love to hear from you!":"发现 Bug、有功能想法，或想分享您的最高分？我们很乐意听取您的意见！","GitHub (Recommended)":"GitHub（推荐）","The fastest way to reach us is by opening an issue on our GitHub repository.":"联系我们最快的方式是在我们的 GitHub 仓库中提交一个 Issue。","Open an Issue":"提交问题","Email":"邮箱","You can also reach us by email:":"您也可以通过邮箱联系我们：","FAQ":"常见问题","The game won't load?":"游戏无法加载？","Make sure JavaScript is enabled. The game works on all modern browsers.":"请确保已启用 JavaScript。本游戏支持所有现代浏览器。","No sound?":"没有声音？","Click anywhere on the game canvas first — browsers require user interaction before playing audio.":"请先点击游戏画布上的任意位置 — 浏览器要求用户交互后才能播放音频。","Lost my high score?":"丢失了最高分？","High scores are stored in your browser's local storage. Clearing browser data will reset it.":"最高分存储在浏览器的本地存储中。清除浏览器数据会将其重置。","Want more levels?":"想要更多关卡？","Let us know! We're always adding new content.":"请告诉我们！我们一直在添加新内容。","© 2026 Brick Breaker ·":"© 2026 打砖块 ·","More:":"更多：","JimmyWithFiona — Home":"JimmyWithFiona — 首页","Mortgage Calculator":"房贷计算器","FunTests — Quizzes":"FunTests — 测验","Wheel Spinner":"转盘","2048 Game":"2048 游戏","BMI Calculator":"BMI 计算器"};
+function walk(node){
+if(node.nodeType===3){
+var t=node.textContent,k=t.trim();
+if(k&&ZH[k]){node.textContent=t.replace(k,ZH[k])}
+}else if(node.nodeType===1&&node.tagName!=='SCRIPT'&&node.tagName!=='STYLE'&&node.tagName!=='NOSCRIPT'){
+if(node.childNodes.length>1){
+var full=node.textContent.trim();
+if(ZH[full]){node.textContent=ZH[full];return}
+}
+for(var i=0;i<node.childNodes.length;i++){walk(node.childNodes[i])}
+}
+}
+walk(document.body);
+document.documentElement.lang='zh-CN';
+var mo=new MutationObserver(function(muts){
+muts.forEach(function(m){
+if(m.type==='childList'){m.addedNodes.forEach(function(n){walk(n)})}
+else if(m.type==='characterData'){walk(m.target)}
+});
+});
+mo.observe(document.body,{childList:true,subtree:true,characterData:true});
+})();
+</script>
+<!-- /I18N-FULL -->
 </body>
 </html>

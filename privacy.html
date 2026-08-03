@@ -199,5 +199,35 @@
 
     <div style="margin-top:0.6rem;font-size:0.72rem;opacity:0.6;">More: <a href="https://jimmywithfiona.com/">JimmyWithFiona — Home</a> · <a href="https://jimmywithfiona.com/mortgage-calculator/">Mortgage Calculator</a> · <a href="https://jimmywithfiona.com/fun-tests/">FunTests — Quizzes</a> · <a href="https://jimmywithfiona.com/wheel-spinner/">Wheel Spinner</a> · <a href="https://jimmywithfiona.com/game-2048/">2048 Game</a> · <a href="https://jimmywithfiona.com/bmi-calculator/">BMI Calculator</a></div>
 </footer>
+<!-- I18N-FULL -->
+<script>
+(function(){
+var lang=(navigator.language||navigator.userLanguage||'en').toLowerCase();
+if(!lang.startsWith('zh'))return;
+var ZH={"🧱 Brick Breaker":"🧱 打砖块","Play":"开始游戏","About":"关于","Privacy":"隐私","Contact":"联系","🏠 Home":"🏠 首页","Privacy Policy":"隐私政策","Last updated: July 23, 2026":"最后更新：2026 年 7 月 23 日","This privacy policy explains how Brick Breaker (\"we\", \"this site\") handles visitor information. By using this site, you agree to the practices described here.":"本隐私政策说明了打砖块（“我们”、“本站”）如何处理访客信息。使用本站即表示您同意此处所述的做法。","1. Information We Collect":"1. 我们收集的信息","Brick Breaker is a static browser game. We do not require registration and do not collect personal information such as your name, email, or phone number. The game stores your high score in your browser's local storage — this data never leaves your device.":"打砖块是一款静态网页游戏。我们不要求注册，也不收集姓名、邮箱或电话号码等个人信息。游戏会将您的最高分保存在浏览器的本地存储中 — 此数据绝不会离开您的设备。","2. Local Storage":"2. 本地存储","The game uses your browser's local storage to save your high score between sessions. This data is stored only on your device and is not transmitted to any server. You can clear this data at any time through your browser settings.":"游戏使用浏览器的本地存储来保存您跨会话的最高分。此数据仅存储在您的设备上，不会传输到任何服务器。您可以随时通过浏览器设置清除此数据。","3. Cookies":"3. Cookie","This site itself does not set cookies. However, if third-party advertising or analytics services are integrated (see below), those providers may use cookies or similar technologies.":"本站本身不设置 Cookie。但是，如果集成了第三方广告或分析服务（见下文），这些服务提供商可能会使用 Cookie 或类似技术。","4. Third-Party Services":"4. 第三方服务","This site uses the following third-party services:":"本站使用以下第三方服务：",": Hosting service that stores and serves the website. GitHub may log standard request data (IP, timestamp) for security purposes.":"：托管服务，负责存储和提供网站。GitHub 可能会出于安全目的记录标准请求数据（IP、时间戳）。","Counter API":"计数器 API",": Provides anonymous page-view counting. No personal data is transmitted.":"：提供匿名页面浏览量统计。不传输任何个人数据。","5. Advertising":"5. 广告","This site may display ads via Google AdSense. Google, as a third-party vendor, uses cookies to serve ads. You can manage your ad preferences at":"本站可能通过 Google AdSense 展示广告。Google 作为第三方供应商，使用 Cookie 来投放广告。您可以在以下网址管理广告偏好设置：","Google Ad Settings":"Google 广告设置","or opt out at":"或选择退出：","6. Children's Privacy":"6. 儿童隐私","This game is suitable for all ages. We do not knowingly collect any personal information from children or any other users.":"本游戏适合所有年龄段。我们不会有意收集儿童或任何其他用户的个人信息。","7. Your Rights":"7. 您的权利","Since we do not collect personal data, there is no personal data to access or delete. Your high score is stored locally and can be cleared via your browser settings.":"由于我们不收集个人数据，因此没有可访问或删除的个人数据。您的最高分存储在本地，可通过浏览器设置清除。","8. Policy Updates":"8. 政策更新","We may update this privacy policy from time to time. Updates will be posted on this page with a revised date.":"我们可能会不时更新本隐私政策。更新内容将发布在此页面上，并注明更新日期。","9. Contact":"9. 联系方式","For any questions, please use the":"如有任何问题，请使用","contact page":"联系页面","© 2026 Brick Breaker ·":"© 2026 打砖块 ·","More:":"更多：","JimmyWithFiona — Home":"JimmyWithFiona — 首页","Mortgage Calculator":"房贷计算器","FunTests — Quizzes":"FunTests — 测验","Wheel Spinner":"转盘","2048 Game":"2048 游戏","BMI Calculator":"BMI 计算器"};
+function walk(node){
+if(node.nodeType===3){
+var t=node.textContent,k=t.trim();
+if(k&&ZH[k]){node.textContent=t.replace(k,ZH[k])}
+}else if(node.nodeType===1&&node.tagName!=='SCRIPT'&&node.tagName!=='STYLE'&&node.tagName!=='NOSCRIPT'){
+if(node.childNodes.length>1){
+var full=node.textContent.trim();
+if(ZH[full]){node.textContent=ZH[full];return}
+}
+for(var i=0;i<node.childNodes.length;i++){walk(node.childNodes[i])}
+}
+}
+walk(document.body);
+document.documentElement.lang='zh-CN';
+var mo=new MutationObserver(function(muts){
+muts.forEach(function(m){
+if(m.type==='childList'){m.addedNodes.forEach(function(n){walk(n)})}
+else if(m.type==='characterData'){walk(m.target)}
+});
+});
+mo.observe(document.body,{childList:true,subtree:true,characterData:true});
+})();
+</script>
+<!-- /I18N-FULL -->
 </body>
 </html>
