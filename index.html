@@ -412,6 +412,15 @@
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://jimmywithfiona.com/"},{"@type":"ListItem","position":2,"name":"Games","item":"https://jimmywithfiona.com/games/"},{"@type":"ListItem","position":3,"name":"Brick Breaker","item":"https://jimmywithfiona.com/brick-breaker/"}]}</script>
 
 <script type="application/ld+json">{"@context":"https://schema.org","@type":"VideoGame","name":"Brick Breaker","url":"https://jimmywithfiona.com/brick-breaker/","applicationCategory":"Game","operatingSystem":"Any (Web Browser)","offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"publisher":{"@type":"Organization","name":"JimmyWithFiona","url":"https://jimmywithfiona.com/"}}</script>
+<!-- GA4 -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"></script>
+<script>
+window.dataLayer=window.dataLayer||[];
+function gtag(){dataLayer.push(arguments);}
+gtag('js',new Date());
+gtag('config','G-XXXXXXXXXX');
+</script>
+<!-- /GA4 -->
 </head>
 <body>
 
@@ -573,5 +582,54 @@ if (!localStorage.getItem(uvKey)) {
         .catch(() => { uvEl.textContent = "N/A"; });
 }
 </script>
+<!-- BOOKMARK-PROMPT -->
+<script>
+(function(){
+var shown=false;
+function showBookmarkHint(){
+if(shown)return;shown=true;
+var d=document.createElement('div');
+d.id='bm-hint';
+d.style.cssText='position:fixed;bottom:80px;right:20px;background:#161922;border:1px solid #2d3340;border-radius:12px;padding:1rem 1.2rem;max-width:260px;z-index:200;box-shadow:0 8px 32px rgba(0,0,0,.4);font-size:.82rem;color:#e8eaf0;font-family:sans-serif;transition:opacity .3s,transform .3s;opacity:0;transform:translateY(10px)';
+d.innerHTML='<div style="font-weight:700;margin-bottom:.3rem;">⭐ Bookmark this tool</div><div style="color:#7a8190;font-size:.75rem;margin-bottom:.6rem;">Quick access for next time — press Ctrl+D</div><button id="bm-close" style="background:#4f8cff;color:#fff;border:none;border-radius:6px;padding:.3rem .8rem;font-size:.72rem;cursor:pointer">Got it</button>';
+document.body.appendChild(d);
+setTimeout(function(){{d.style.opacity='1';d.style.transform='translateY(0)';}},100);
+document.getElementById('bm-close').onclick=function(){{d.style.opacity='0';d.style.transform='translateY(10px)';setTimeout(function(){{d.remove()}},300)}};
+}
+var interactions=0;
+function checkEngagement(){
+interactions++;
+if(interactions>=3&&!localStorage.getItem('bm_dismissed')){
+showBookmarkHint();
+localStorage.setItem('bm_dismissed','1');
+}
+}
+['click','keydown','touchstart'].forEach(function(e){document.addEventListener(e,checkEngagement,{once:false,passive:true})});
+})();
+</script>
+<!-- /BOOKMARK-PROMPT -->
+<!-- I18N-FULL -->
+<script>
+(function(){
+var lang=(navigator.language||navigator.userLanguage||'en').toLowerCase();
+if(!lang.startsWith('zh'))return;
+var ZH={"About":"关于","Privacy":"隐私","Contact":"联系","Home":"首页","Generate":"生成","Calculate":"计算","Convert":"转换","Download":"下载","Copy":"复制","Clear":"清空","Reset":"重置","Upload":"上传","Start":"开始","Stop":"停止","Search":"搜索","Views":"浏览","Visitors":"访客","More":"更多","Free online tools":"免费在线工具","Result":"结果","Size":"尺寸","Color":"颜色","Width":"宽度","Height":"高度","Format":"格式","Quality":"质量","Options":"选项","Settings":"设置","Loading...":"加载中…","Processing...":"处理中…","Click to upload":"点击上传","or drag & drop":"或拖拽到此处","No results found":"未找到结果","Try again":"重试","How to Play":"玩法说明","How to Use":"使用方法","FAQ":"常见问题","Free":"免费","Private":"隐私","No signup":"无需注册","No download":"无需下载","No upload":"不上传","Works on mobile":"手机可用","100% Free":"完全免费","Related Tools":"相关工具","Brick Breaker":"打砖块","Score":"得分","Lives":"生命","Level":"关卡","Game Over":"游戏结束","Free brick breaker game":"免费打砖块","Classic arcade game with power-ups and levels":"经典街机游戏，含道具和关卡","Classic arcade game.":"经典打砖块游戏。","Pause":"暂停","Classic arcade game":"经典街机游戏"};
+function walk(node){
+if(node.nodeType===3){
+var t=node.textContent;
+for(var en in ZH){
+if(t.indexOf(en)>=0){
+node.textContent=t.replace(en,ZH[en]);
+}
+}
+}else if(node.nodeType===1&&node.tagName!=='SCRIPT'&&node.tagName!=='STYLE'&&node.tagName!=='NOSCRIPT'){
+for(var i=0;i<node.childNodes.length;i++){walk(node.childNodes[i])}
+}
+}
+walk(document.body);
+document.documentElement.lang='zh-CN';
+})();
+</script>
+<!-- /I18N-FULL -->
 </body>
 </html>
